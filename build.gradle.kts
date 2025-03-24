@@ -19,9 +19,11 @@ dependencies {
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.mockito:mockito-core:5.4.0")
-	testRuntimeOnly("com.h2database:h2:2.2.224")
+	testImplementation("org.springframework.boot:spring-boot-starter-test") {
+		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+	}
+	testImplementation("org.mockito:mockito-junit-jupiter:5.3.1")
+	testImplementation("com.h2database:h2:2.2.224")
 }
 
 tasks.test {

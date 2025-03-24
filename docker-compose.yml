@@ -1,0 +1,44 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/bookdb?useSSL=false
+      - SPRING_DATASOURCE_USERNAME=bookuser
+      - SPRING_DATASOURCE_PASSWORD=bookpass
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - /tmp:/tmp  # Recommended for WSL2 file performance
+    networks:
+      - book-net
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: bookdb
+      MYSQL_USER: bookuser
+      MYSQL_PASSWORD: bookpass
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-ubookuser", "-pbookpass"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    ports:
+      - "3306:3306"
+    networks:
+      - book-net
+
+volumes:
+  mysql_data:
+
+networks:
+  book-net:
+    driver: bridge
