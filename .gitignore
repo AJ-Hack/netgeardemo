@@ -1,0 +1,91 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Build
+target/
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env
+*.env
+.env.local
+.env.development
+.env.test
+
+# Docker
+docker-compose.override.yml
+
+# Database
+*.db
+*.sqlite
+*.h2.db
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Dependency directories
+node_modules/
+
+# Test reports
+build/reports/
+.tests/
+
+# System Files
+*.bak
+*.orig
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Spring Boot
+application-*.properties
+!application-test.properties
